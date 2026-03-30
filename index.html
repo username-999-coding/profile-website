@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>My profile</title>
+    <link rel = "stylesheet" href="style.css">
+</head>
+
+<script>
+function sendMessage() {
+
+    let message = document.getElementById("message").value;
+    let sender = document.getElementById("sender").value;
+
+    if(message === "" || sender === ""){
+        alert("Fill the fields first.");
+        return;
+    }
+
+    fetch("http://localhost:3000/comment", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            message: message,
+            sender: sender
+        })
+    })
+
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+
+        // clear input after send
+        document.getElementById("message").value = "";
+        document.getElementById("sender").value = "";
+    })
+
+    .catch(error => console.error(error));
+}
+</script>
+
+<body>
+    <!-- The title transition -->
+    <div class="marquee">
+        <span>This is my web profile</span>
+    </div>
+
+    <div class = "profile">
+        <div class = "me">
+            <h4>Me</h4>
+            <a href = "https://id.wikipedia.org/wiki/Tupac_Shakur">
+                <img src = "2pac.jpg">
+            </a>
+            <p>Hello guys, welcome to my profile website. This is made
+                by myself because people don't know me. My name is Edgard Arwadi, 
+                my friends are always called me "Ed" or "Gard". I was born in 
+                a hospital, 7 July 2010. I am 16 years old, which means i am a teenager.
+
+                My personalities are kinda shy, introverted, curious about something new, 
+                emphaty at people who suffer and kinda tempremental. My appereance is kinda 
+                tall because i am 177 cm, black eyes, black hair and white skin.
+            </p>
+
+            <br>
+
+            <p>
+                My hobbies are listening to Metal and Rap music because 
+                i like listening the instrumentals and the vocals and coding
+                something because i already learn python.
+
+                My excesses are easy to understand, dicipline and consistent at one
+                thing, can count numbers and code programs i want. My weaknesses are 
+                too scared to talk with new people and bad at social lessons.
+            </p>
+        </div>
+    </div>
+
+    <div class = "asking">
+        <h4>About me if u wanna ask</h4>
+        <a href = "contact.html">Contact me, ok?</a>
+        <br>
+        <a href = "projects.html">What projects have u made?</a>
+        <br>
+        <a href = "now.html">What r u doing now?</a>
+        <br>
+        <a href = "goals and quotes.html">What makes u still encourage to live?</a>
+        <br>
+        <a href="story.html">How did u learn coding?</a>
+    </div>
+
+    <div class = "guestbook">
+        <h4>Comment</h4>
+        <br>
+        <input id = "message" type = "text" placeholder="Leave a message for me">
+        <input id = "sender" type = "text" placeholder="From if u don't mind">
+        <button onclick="sendMessage()" title = "Send your words for me">Send</button>
+    </div>
+
+    <p id="made">Made by: ED_G</p>
+    <p id="edited">Edited by: ED_G</p>
+    <p id="idea">Idea by: ED_G</p>
+</body>
+</html>

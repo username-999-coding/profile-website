@@ -1,0 +1,163 @@
+body{
+    background: linear-gradient(to bottom, skyblue, lightgreen);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.profile{
+    margin-top: 100px;
+    margin-left: 5%;
+
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 10px;
+    border-color: aqua;
+    width: 85%;
+    padding: 10px;
+
+}
+
+.me h4{
+    color: blue;
+    font-size: 50px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.me p{
+    font-family: "Press Start 2P", "consolas";
+    color: red;
+}
+
+.me img{
+    position: relative;
+    left: 40%;
+    bottom: 50px;
+}
+
+.asking{
+    margin-top: 100px;
+    margin-left: 5%;
+
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 10px;
+    border-color:darkorange;
+    width: 30%;
+    padding: 10px;
+}
+
+.asking h4{
+    color:deeppink;
+    font-size: 50px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.asking a{
+    font-size: 25px;
+}
+
+.guestbook{
+    margin-top: 100px;
+    margin-left: 5%;
+
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 10px;
+    border-color:greenyellow;
+    width: 35%;
+    padding: 15px;
+
+    position: relative;
+    left: 600px;
+    bottom: 560px;
+}
+
+.guestbook input{
+    margin-top: 30px;
+    width: 400px;
+    height: 50px;
+    font-size: 35px;
+    color: darkslateblue;
+}
+
+.guestbook h4{
+    color:deeppink;
+    font-size: 20px;
+    text-align: center;
+}
+
+#made{
+    position: relative;
+    left: 680px;
+    bottom: 500px;
+    font-size: 20px;
+    color: tomato;
+}
+
+#edited{
+    position: relative;
+    left: 850px;
+    bottom: 542px;
+    font-size: 20px;
+    color: tomato;
+}
+
+#idea{
+    position: relative;
+    left: 1030px;
+    bottom: 585px;
+    font-size: 20px;
+    color: tomato;
+}
+
+button{
+    font-size: 30px;
+    margin: 20px;
+}
+
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+
+    font-size: 20px;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll 10s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+a{
+    font-size: 50px;
+    text-shadow: 0px -5px 5px red;
+}
+
+a:link{
+    color:coral;
+}
+
+a:visited{
+    color:darkred;
+}
+
+a:hover{
+    color:greenyellow;
+    box-shadow: 0px 5px 5px blue;
+}
+
+a:active{
+    color:olivedrab
+}
