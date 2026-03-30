@@ -1,36 +1,28 @@
 const express = require('express');
 const cors = require('cors');
-const ExcelJS = require('exceljs');
-const path = require('path');
+const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const EXCEL_PATH = path.join(__dirname, 'guestbook.xlsx');
+const supabase = createClient('https://vujppxrdwkprvkiqjetx.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1anBweHJkd2twcnZraXFqZXR4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDg2ODY1NCwiZXhwIjoyMDkwNDQ0NjU0fQ.XFDApsqcKPDUaOVNbeJxLCFCXtFL8ZWvWnlY6zzTEs4');
 
 app.post('/comment', async (req, res) => {
     const { message, sender } = req.body;
 
-    const workbook = new ExcelJS.Workbook();
-    let sheet;
+    const { error } = await supabase
+        .from('guestbook')
+        .insert([{ name: sender, message: message }]);
 
-    try {
-        await workbook.xlsx.readFile(EXCEL_PATH);
-        sheet = workbook.getWorksheet(1); // pakai index, bukan nama
-    } catch {
-        sheet = workbook.addWorksheet('Guestbook');
-        sheet.addRow(['No', 'Name', 'Text']);
+    if (error) {
+        console.error(error);
+        return res.status(500).send('Failed to save');
     }
-
-    const nextNo = sheet.rowCount; // jumlah row sekarang = nomor urut
-    sheet.addRow([nextNo, sender, message]);
-
-    await workbook.xlsx.writeFile(EXCEL_PATH);
 
     res.send('Saved');
 });
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log('Server running on port 3000');
+    console.log('Server running');
 });
